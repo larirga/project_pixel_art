@@ -1,0 +1,27 @@
+#title {
+    color:black;
+    font-family: monospace;
+}
+
+.color {
+    width: 70px;
+    height: 60px;
+    display: inline-block;
+    border: black solid 1px;
+}
+
+#black {
+    background-color: black;
+}
+
+#red {
+    background-color: red;
+}
+
+#blue {
+    background-color: blue;
+}
+
+#yellow {
+    background-color: yellow;
+}
