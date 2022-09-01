@@ -23,19 +23,38 @@ function createRandomColors() {
     let b = parseInt(Math.random() * 255);
     return `rgba(${r}, ${g}, ${b})`;
 }
-createRandomColors();
 
-const buttonColorClick = document.getElementById('button-random-color')
+const buttonColorClick = document.getElementById('button-random-color');
+const colorBlack = document.getElementsByClassName('color')[0];
+const arrayColor = document.getElementById('color-palette');
+const arrayColors2 = document.getElementsByClassName('color');
 
 function createGenerator() {
-    const colorBlack = document.getElementsByClassName('color')[0];
-    const arrayColor = document.getElementById('color-palette');
     const arrayColorChildren = arrayColor.children;
+    const arrayChangeColor = [];
     for (let index = 0; index < arrayColorChildren.length; index += 1) {
+        const fixColor = createRandomColors();
+        arrayChangeColor.push(fixColor);
         if (arrayColorChildren[index] !== colorBlack) {
-            arrayColorChildren[index].style.backgroundColor = createRandomColors();
+            arrayColorChildren[index].style.backgroundColor = fixColor;
+        }
+    } localStorage.setItem('colorPalette', JSON.stringify(arrayChangeColor));
+}
+
+buttonColorClick.addEventListener('click', createGenerator);
+
+window.onload = function() {
+    const saveColor = JSON.parse(localStorage.getItem('colorPalette'));
+    for (let index = 0; index < arrayColors2.length; index += 1) {
+        if (arrayColors2[index] !== colorBlack) {
+            arrayColors2[index].style.backgroundColor = saveColor;
+            
         }
     }
 }
 
-buttonColorClick.addEventListener('click', createGenerator);
+// function savedColor() {
+//     localStorage.setItem('colorPalette', JSON.stringify();
+//     const generator = JSON.parse(localStorage.getItem('colorPalette'));
+//     document.style.backgroundColor = generator
+// }
