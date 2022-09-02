@@ -1,7 +1,7 @@
 function saveLocalStorage(nomeDaChave, valor) {
     localStorage.setItem(nomeDaChave, JSON.stringify(valor));
 }
-const colorBlack = document.getElementsByClassName('color')[0];
+
 const colorPallet = document.getElementById('color-palette');
 function createPalletColors() {
     const emptyArray = [];
@@ -11,7 +11,7 @@ function createPalletColors() {
         div.style.backgroundColor = createRandomColors();
         if (index === 0) {
             div.style.backgroundColor = 'black';
-        }
+        } 
         emptyArray.push(div.style.backgroundColor);
         colorPallet.appendChild(div);
     }
@@ -78,7 +78,6 @@ function createPaintingSquare() {
     const bigSquare = document.createElement('div');
     bigSquare.id = 'pixel-board';
     bigSquare.style.width = '250px';
-    bigSquare.style.height = '350px';
     body.appendChild(bigSquare);
 }
 createPaintingSquare();
@@ -97,3 +96,10 @@ function smallSquare() {
     }
 }
 smallSquare();
+
+function blackColorClass() {
+    const colorBlack = document.getElementsByClassName('color')[0];
+    colorBlack.className = 'selected';
+    colorBlack.classList.add('selected', 'color');
+}
+blackColorClass();
