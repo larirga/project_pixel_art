@@ -1,10 +1,10 @@
 function saveLocalStorage(nomeDaChave, valor) {
     localStorage.setItem(nomeDaChave, JSON.stringify(valor));
 }
-
+const colorBlack = document.getElementsByClassName('color')[0];
 const colorPallet = document.getElementById('color-palette');
 function createPalletColors() {
-    let emptyArray = [];
+    const emptyArray = [];
     for (let index = 0; index < 4; index += 1) {
         const div = document.createElement('div');
         div.className = 'color';
@@ -36,9 +36,7 @@ function createRandomColors() {
 }
 
 const buttonColorClick = document.getElementById('button-random-color');
-const colorBlack = document.getElementsByClassName('color')[0];
 const arrayColor = document.getElementById('color-palette');
-const arrayColors2 = document.getElementsByClassName('color');
 
 function createGenerator() {
     const arrayColorChildren = arrayColor.children;
@@ -56,7 +54,7 @@ function createGenerator() {
 
 buttonColorClick.addEventListener('click', createGenerator);
 
- function recoverStorage(nomeDaChave) {
+function recoverStorage(nomeDaChave) {
     const saveColor = JSON.parse(localStorage.getItem(nomeDaChave));
     for (let index = 0; index < 4; index += 1) {
         const div = document.createElement('div');
@@ -79,6 +77,8 @@ if (localStorage.getItem('colorPalette') === null) {
 function createPaintingSquare() {
     const bigSquare = document.createElement('div');
     bigSquare.id = 'pixel-board';
+    bigSquare.style.width = '250px';
+    bigSquare.style.height = '350px';
     body.appendChild(bigSquare);
 }
 createPaintingSquare();
