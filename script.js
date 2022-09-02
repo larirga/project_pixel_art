@@ -1,15 +1,26 @@
-// const colorPallet = document.getElementById('color-pallete')
-// function createPalletColors() {
-//     for (let index = 0; index < 4; index += 1) {
-//         const div = document.createElement('div');
-//         div.className = 'color';
-//         colorPallet.appendChild(div);
-        
-//     }
-// }
-// createPalletColors();
+function saveLocalStorage(nomeDaChave, valor) {
+    localStorage.setItem(nomeDaChave, JSON.stringify(valor));
+}
+
+const colorPallet = document.getElementById('color-palette');
+function createPalletColors() {
+    let emptyArray = [];
+    for (let index = 0; index < 4; index += 1) {
+        const div = document.createElement('div');
+        div.className = 'color';
+        div.style.backgroundColor = createRandomColors();
+        if (index === 0) {
+            div.style.backgroundColor = 'black';
+        }
+        emptyArray.push(div.style.backgroundColor);
+        colorPallet.appendChild(div);
+    }
+    saveLocalStorage('colorPalette', emptyArray);
+}
+
+const body = document.getElementById('overview');
+
 function createButtonColor() {
-    const body = document.getElementById('overview');
     const buttonColor = document.createElement('button');
     buttonColor.id = 'button-random-color';
     buttonColor.innerText = 'Cores aleatórias';
@@ -33,28 +44,56 @@ function createGenerator() {
     const arrayColorChildren = arrayColor.children;
     const arrayChangeColor = [];
     for (let index = 0; index < arrayColorChildren.length; index += 1) {
-        const fixColor = createRandomColors();
-        arrayChangeColor.push(fixColor);
-        if (arrayColorChildren[index] !== colorBlack) {
-            arrayColorChildren[index].style.backgroundColor = fixColor;
+        let fixColor = createRandomColors();
+        if (index === 0) {
+            fixColor = 'black';
         }
-    } localStorage.setItem('colorPalette', JSON.stringify(arrayChangeColor));
+        arrayChangeColor.push(fixColor);
+    arrayColorChildren[index].style.backgroundColor = fixColor;
+    
+    } saveLocalStorage('colorPalette', arrayChangeColor);
 }
 
 buttonColorClick.addEventListener('click', createGenerator);
 
-window.onload = function() {
-    const saveColor = JSON.parse(localStorage.getItem('colorPalette'));
-    for (let index = 0; index < arrayColors2.length; index += 1) {
-        if (arrayColors2[index] !== colorBlack) {
-            arrayColors2[index].style.backgroundColor = saveColor;
-            
+ function recoverStorage(nomeDaChave) {
+    const saveColor = JSON.parse(localStorage.getItem(nomeDaChave));
+    for (let index = 0; index < 4; index += 1) {
+        const div = document.createElement('div');
+        div.className = 'color';
+        div.style.backgroundColor = saveColor[index];
+        if (index === 0) {
+            div.style.backgroundColor = 'black';
         }
+        colorPallet.appendChild(div);
     }
 }
 
-// function savedColor() {
-//     localStorage.setItem('colorPalette', JSON.stringify();
-//     const generator = JSON.parse(localStorage.getItem('colorPalette'));
-//     document.style.backgroundColor = generator
-// }
+if (localStorage.getItem('colorPalette') === null) {
+    createPalletColors();
+} else {
+    recoverStorage('colorPalette');
+}
+
+
+function createPaintingSquare() {
+    const bigSquare = document.createElement('div');
+    bigSquare.id = 'pixel-board';
+    body.appendChild(bigSquare);
+}
+createPaintingSquare();
+
+function smallSquare() {
+    const fatherSquare = document.getElementById('pixel-board');
+    for (let index = 0; index < 25; index += 1) {
+        const childSquare = document.createElement('div');
+        childSquare.className = 'pixel';
+        childSquare.style.backgroundColor = 'white';
+        childSquare.style.border = '1px solid black';
+        childSquare.style.width = '40px';
+        childSquare.style.height = '40px';
+        childSquare.style.display = 'inline-block';
+        fatherSquare.appendChild(childSquare);
+    }
+}
+smallSquare();
