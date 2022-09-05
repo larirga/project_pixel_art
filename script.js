@@ -82,8 +82,9 @@ function createPaintingSquare() {
 }
 createPaintingSquare();
 
+const fatherSquare = document.getElementById('pixel-board');
+
 function smallSquare() {
-    const fatherSquare = document.getElementById('pixel-board');
     for (let index = 0; index < 25; index += 1) {
         const childSquare = document.createElement('div');
         childSquare.className = 'pixel';
@@ -103,7 +104,6 @@ const colorsSelected = document.querySelectorAll('.color');
 function blackColorClass() {
     colorsSelected[0].classList.add('selected');
 }
-// blackColorClass();
 
 function selectedColor(event) {
     for (let index = 0; index < colorsSelected.length; index += 1) {
@@ -121,4 +121,12 @@ for (let index = 0; index < colorsSelected.length; index += 1) {
 }
 
 blackColorClass();
-colorsSelected[0].classList.add('selected');
+
+function clickColor(event) {
+    const selectedElement = document.querySelector('.selected').style.backgroundColor;
+    const eventClick = event.target;
+    if (eventClick.classList.contains('pixel')) { // Porque utilizei classList.contains https://developer.mozilla.org/pt-BR/docs/Web/API/Element/classList
+        eventClick.style.backgroundColor = selectedElement;
+    }
+}
+fatherSquare.addEventListener('click', clickColor);
