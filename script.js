@@ -1,7 +1,7 @@
 function saveLocalStorage(nomeDaChave, valor) {
     localStorage.setItem(nomeDaChave, JSON.stringify(valor));
 }
-
+// cria paleta de cores no local storage
 const colorPallet = document.getElementById('color-palette');
 function createPalletColors() {
     const emptyArray = [];
@@ -20,6 +20,8 @@ function createPalletColors() {
 
 const body = document.getElementById('overview');
 
+// cria button cores aleatorias
+
 function createButtonColor() {
     const buttonColor = document.createElement('button');
     buttonColor.id = 'button-random-color';
@@ -27,6 +29,17 @@ function createButtonColor() {
     body.appendChild(buttonColor);
 }
 createButtonColor();
+
+// button limpar
+
+function createButtonClear() {
+    const buttonClear = document.createElement('button');
+    buttonClear.id = 'clear-board';
+    buttonClear.innerText = 'Limpar';
+    body.appendChild(buttonClear);
+}
+createButtonClear();
+
 // source: https://wallacemaxters.com.br/blog/48/como-gerar-cores-aleatorias-no-javascript
 function createRandomColors() {
     let r = parseInt(Math.random() * 255);
@@ -37,6 +50,8 @@ function createRandomColors() {
 
 const buttonColorClick = document.getElementById('button-random-color');
 const arrayColor = document.getElementById('color-palette');
+
+// cria paleta de cores
 
 function createGenerator() {
     const arrayColorChildren = arrayColor.children;
@@ -73,6 +88,7 @@ if (localStorage.getItem('colorPalette') === null) {
     recoverStorage('colorPalette');
 }
 
+//cria quadrado maior
 
 function createPaintingSquare() {
     const bigSquare = document.createElement('div');
@@ -83,6 +99,8 @@ function createPaintingSquare() {
 createPaintingSquare();
 
 const fatherSquare = document.getElementById('pixel-board');
+
+//cria quadrado menor
 
 function smallSquare() {
     for (let index = 0; index < 25; index += 1) {
@@ -99,11 +117,15 @@ function smallSquare() {
 }
 smallSquare();
 
+// coloca a cor preta como selected ao abrir a pagina
+
 const colorsSelected = document.querySelectorAll('.color');
 
 function blackColorClass() {
     colorsSelected[0].classList.add('selected');
 }
+
+//Seleciona as cores da paleta (consegui visualizar pelo inspecionar) e evento de click
 
 function selectedColor(event) {
     for (let index = 0; index < colorsSelected.length; index += 1) {
@@ -122,6 +144,8 @@ for (let index = 0; index < colorsSelected.length; index += 1) {
 
 blackColorClass();
 
+//adiciona o evento de click nas cores 
+
 function clickColor(event) {
     const selectedElement = document.querySelector('.selected').style.backgroundColor;
     const eventClick = event.target;
@@ -130,3 +154,15 @@ function clickColor(event) {
     }
 }
 fatherSquare.addEventListener('click', clickColor);
+
+//Percorre os pixels e adiciona o evento click no limpar
+
+const selectedClear = document.getElementById('clear-board');
+
+function clickAndClear() {
+    const selectedPixels = document.querySelectorAll('.pixel');
+    for (let index = 0; index < selectedPixels.length; index += 1) {
+        selectedPixels[index].style.backgroundColor = 'white';
+    }
+}
+selectedClear.addEventListener('click', clickAndClear);
