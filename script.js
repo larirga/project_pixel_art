@@ -11,7 +11,7 @@ function createPalletColors() {
         div.style.backgroundColor = createRandomColors();
         if (index === 0) {
             div.style.backgroundColor = 'black';
-        } 
+        }
         emptyArray.push(div.style.backgroundColor);
         colorPallet.appendChild(div);
     }
@@ -92,14 +92,33 @@ function smallSquare() {
         childSquare.style.width = '40px';
         childSquare.style.height = '40px';
         childSquare.style.display = 'inline-block';
+        childSquare.style.margin = '3px';
         fatherSquare.appendChild(childSquare);
     }
 }
 smallSquare();
 
+const colorsSelected = document.querySelectorAll('.color');
+
 function blackColorClass() {
-    const colorBlack = document.getElementsByClassName('color')[0];
-    colorBlack.className = 'selected';
-    colorBlack.classList.add('selected', 'color');
+    colorsSelected[0].classList.add('selected');
 }
+// blackColorClass();
+
+function selectedColor(event) {
+    for (let index = 0; index < colorsSelected.length; index += 1) {
+        if (event.target === colorsSelected[index]) {
+            colorsSelected[index].classList.add('selected');
+        } else {
+            colorsSelected[index].classList.remove('selected');
+        }
+    }
+}
+
+for (let index = 0; index < colorsSelected.length; index += 1) {
+    colorsSelected[index].addEventListener('click', selectedColor);
+    colorsSelected[index].classList.remove('selected');
+}
+
 blackColorClass();
+colorsSelected[0].classList.add('selected');
