@@ -2,14 +2,14 @@
 
 ## 1 - Adicione à página o título "Paleta de Cores".
 
-<details>
+
   <summary>A página deve conter o título "Paleta de Cores"</summary><br />
 
 - O título deverá ficar dentro de uma tag `h1` com o `id` denominado `title`;
 
 - O texto do título deve ser **exatamente** "Paleta de Cores".
 
-</details>
+
 
 ## 2 - Adicione à página uma paleta contendo quatro cores distintas.
 
