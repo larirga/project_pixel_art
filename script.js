@@ -1,21 +1,21 @@
 function saveLocalStorage(nomeDaChave, valor) {
-    localStorage.setItem(nomeDaChave, JSON.stringify(valor));
+  localStorage.setItem(nomeDaChave, JSON.stringify(valor));
 }
 // cria paleta de cores no local storage
 const colorPallet = document.getElementById('color-palette');
 function createPalletColors() {
-    const emptyArray = [];
-    for (let index = 0; index < 4; index += 1) {
-        const div = document.createElement('div');
-        div.className = 'color';
-        div.style.backgroundColor = createRandomColors();
-        if (index === 0) {
-            div.style.backgroundColor = 'black';
-        }
-        emptyArray.push(div.style.backgroundColor);
-        colorPallet.appendChild(div);
+  const emptyArray = [];
+  for (let index = 0; index < 4; index += 1) {
+    const div = document.createElement('div');
+    div.className = 'color';
+    div.style.backgroundColor = createRandomColors();
+    if (index === 0) {
+      div.style.backgroundColor = 'black';
     }
-    saveLocalStorage('colorPalette', emptyArray);
+    emptyArray.push(div.style.backgroundColor);
+    colorPallet.appendChild(div);
+  }
+  saveLocalStorage('colorPalette', emptyArray);
 }
 
 const body = document.getElementById('overview');
@@ -23,97 +23,96 @@ const body = document.getElementById('overview');
 // cria button cores aleatorias
 
 function createButtonColor() {
-    const buttonColor = document.createElement('button');
-    buttonColor.id = 'button-random-color';
-    buttonColor.innerText = 'Cores aleatórias';
-    body.appendChild(buttonColor);
+  const buttonColor = document.createElement('button');
+  buttonColor.id = 'button-random-color';
+  buttonColor.innerText = 'Cores aleatórias';
+  body.appendChild(buttonColor);
 }
 createButtonColor();
 
 // button limpar
 
 function createButtonClear() {
-    const buttonClear = document.createElement('button');
-    buttonClear.id = 'clear-board';
-    buttonClear.innerText = 'Limpar';
-    body.appendChild(buttonClear);
+  const buttonClear = document.createElement('button');
+  buttonClear.id = 'clear-board';
+  buttonClear.innerText = 'Limpar';
+  body.appendChild(buttonClear);
 }
 createButtonClear();
 
 // source: https://wallacemaxters.com.br/blog/48/como-gerar-cores-aleatorias-no-javascript
 function createRandomColors() {
-    let r = parseInt(Math.random() * 255);
-    let g = parseInt(Math.random() * 255);
-    let b = parseInt(Math.random() * 255);
-    return `rgba(${r}, ${g}, ${b})`;
+  const r = parseInt(Math.random() * 255);
+  const g = parseInt(Math.random() * 255);
+  const b = parseInt(Math.random() * 255);
+  return `rgba(${r}, ${g}, ${b})`;
 }
 
 const buttonColorClick = document.getElementById('button-random-color');
 const arrayColor = document.getElementById('color-palette');
 
-//Cria paleta de cores aleatoria e evento click
+// Cria paleta de cores aleatoria e evento click
 
 function createGenerator() {
-    const arrayColorChildren = arrayColor.children;
-    const arrayChangeColor = [];
-    for (let index = 0; index < arrayColorChildren.length; index += 1) {
-        let fixColor = createRandomColors();
-        if (index === 0) {
-            fixColor = 'black';
-        }
-        arrayChangeColor.push(fixColor);
+  const arrayColorChildren = arrayColor.children;
+  const arrayChangeColor = [];
+  for (let index = 0; index < arrayColorChildren.length; index += 1) {
+    let fixColor = createRandomColors();
+    if (index === 0) {
+      fixColor = 'black';
+    }
+    arrayChangeColor.push(fixColor);
     arrayColorChildren[index].style.backgroundColor = fixColor;
-    
-    } saveLocalStorage('colorPalette', arrayChangeColor);
+  } saveLocalStorage('colorPalette', arrayChangeColor);
 }
 
 buttonColorClick.addEventListener('click', createGenerator);
 
 function recoverStorage(nomeDaChave) {
-    const saveColor = JSON.parse(localStorage.getItem(nomeDaChave));
-    for (let index = 0; index < 4; index += 1) {
-        const div = document.createElement('div');
-        div.className = 'color';
-        div.style.backgroundColor = saveColor[index];
-        if (index === 0) {
-            div.style.backgroundColor = 'black';
-        }
-        colorPallet.appendChild(div);
+  const saveColor = JSON.parse(localStorage.getItem(nomeDaChave));
+  for (let index = 0; index < 4; index += 1) {
+    const div = document.createElement('div');
+    div.className = 'color';
+    div.style.backgroundColor = saveColor[index];
+    if (index === 0) {
+      div.style.backgroundColor = 'black';
     }
+    colorPallet.appendChild(div);
+  }
 }
 
 if (localStorage.getItem('colorPalette') === null) {
-    createPalletColors();
+  createPalletColors();
 } else {
-    recoverStorage('colorPalette');
+  recoverStorage('colorPalette');
 }
 
-//cria quadrado maior
+// cria quadrado maior
 
 function createPaintingSquare() {
-    const bigSquare = document.createElement('div');
-    bigSquare.id = 'pixel-board';
-    bigSquare.style.width = '250px';
-    body.appendChild(bigSquare);
+  const bigSquare = document.createElement('div');
+  bigSquare.id = 'pixel-board';
+  bigSquare.style.width = '250px';
+  body.appendChild(bigSquare);
 }
 createPaintingSquare();
 
 const fatherSquare = document.getElementById('pixel-board');
 
-//cria quadrado menor
+// cria quadrado menor
 
 function smallSquare() {
-    for (let index = 0; index < 25; index += 1) {
-        const childSquare = document.createElement('div');
-        childSquare.className = 'pixel';
-        childSquare.style.backgroundColor = 'white';
-        childSquare.style.border = '1px solid black';
-        childSquare.style.width = '40px';
-        childSquare.style.height = '40px';
-        childSquare.style.display = 'inline-block';
-        // childSquare.style.margin = '3px';
-        fatherSquare.appendChild(childSquare);
-    }
+  for (let index = 0; index < 25; index += 1) {
+    const childSquare = document.createElement('div');
+    childSquare.className = 'pixel';
+    childSquare.style.backgroundColor = 'white';
+    childSquare.style.border = '1px solid black';
+    childSquare.style.width = '40px';
+    childSquare.style.height = '40px';
+    childSquare.style.display = 'inline-block';
+    // childSquare.style.margin = '3px';
+    fatherSquare.appendChild(childSquare);
+  }
 }
 smallSquare();
 
@@ -122,10 +121,10 @@ smallSquare();
 const colorsSelected = document.querySelectorAll('.color');
 
 function blackColorClass() {
-    colorsSelected[0].classList.add('selected');
+  colorsSelected[0].classList.add('selected');
 }
 
-//Seleciona as cores da paleta (consegui visualizar pelo inspecionar) e evento de click
+// Seleciona as cores da paleta (consegui visualizar pelo inspecionar) e evento de click
 
 function selectedColor(event) {
   for (let index = 0; index < colorsSelected.length; index += 1) {
@@ -144,7 +143,7 @@ for (let index = 0; index < colorsSelected.length; index += 1) {
 
 blackColorClass();
 
-//Adiciona o evento de click nas cores 
+// Adiciona o evento de click nas cores
 
 function clickColor(event) {
   const selectedElement = document.querySelector('.selected').style.backgroundColor;
@@ -155,7 +154,7 @@ function clickColor(event) {
 }
 fatherSquare.addEventListener('click', clickColor);
 
-//Percorre os pixels e adiciona o evento click no limpar
+// Percorre os pixels e adiciona o evento click no limpar
 
 const selectedClear = document.getElementById('clear-board');
 
