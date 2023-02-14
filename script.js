@@ -51,7 +51,7 @@ function createRandomColors() {
 const buttonColorClick = document.getElementById('button-random-color');
 const arrayColor = document.getElementById('color-palette');
 
-// cria paleta de cores
+//Cria paleta de cores aleatoria e evento click
 
 function createGenerator() {
     const arrayColorChildren = arrayColor.children;
@@ -111,7 +111,7 @@ function smallSquare() {
         childSquare.style.width = '40px';
         childSquare.style.height = '40px';
         childSquare.style.display = 'inline-block';
-        childSquare.style.margin = '3px';
+        // childSquare.style.margin = '3px';
         fatherSquare.appendChild(childSquare);
     }
 }
@@ -128,30 +128,30 @@ function blackColorClass() {
 //Seleciona as cores da paleta (consegui visualizar pelo inspecionar) e evento de click
 
 function selectedColor(event) {
-    for (let index = 0; index < colorsSelected.length; index += 1) {
-        if (event.target === colorsSelected[index]) {
-            colorsSelected[index].classList.add('selected');
-        } else {
-            colorsSelected[index].classList.remove('selected');
-        }
+  for (let index = 0; index < colorsSelected.length; index += 1) {
+    if (event.target === colorsSelected[index]) {
+      colorsSelected[index].classList.add('selected');
+    } else {
+      colorsSelected[index].classList.remove('selected');
     }
+  }
 }
 
 for (let index = 0; index < colorsSelected.length; index += 1) {
-    colorsSelected[index].addEventListener('click', selectedColor);
-    colorsSelected[index].classList.remove('selected');
+  colorsSelected[index].addEventListener('click', selectedColor);
+  colorsSelected[index].classList.remove('selected');
 }
 
 blackColorClass();
 
-//adiciona o evento de click nas cores 
+//Adiciona o evento de click nas cores 
 
 function clickColor(event) {
-    const selectedElement = document.querySelector('.selected').style.backgroundColor;
-    const eventClick = event.target;
-    if (eventClick.classList.contains('pixel')) { // Porque utilizei classList.contains https://developer.mozilla.org/pt-BR/docs/Web/API/Element/classList
-        eventClick.style.backgroundColor = selectedElement;
-    }
+  const selectedElement = document.querySelector('.selected').style.backgroundColor;
+  const eventClick = event.target;
+  if (eventClick.classList.contains('pixel')) { // Porque utilizei classList.contains https://developer.mozilla.org/pt-BR/docs/Web/API/Element/classList
+    eventClick.style.backgroundColor = selectedElement;
+  }
 }
 fatherSquare.addEventListener('click', clickColor);
 
@@ -160,9 +160,9 @@ fatherSquare.addEventListener('click', clickColor);
 const selectedClear = document.getElementById('clear-board');
 
 function clickAndClear() {
-    const selectedPixels = document.querySelectorAll('.pixel');
-    for (let index = 0; index < selectedPixels.length; index += 1) {
-        selectedPixels[index].style.backgroundColor = 'white';
-    }
+  const selectedPixels = document.querySelectorAll('.pixel');
+  for (let index = 0; index < selectedPixels.length; index += 1) {
+    selectedPixels[index].style.backgroundColor = 'white';
+  }
 }
 selectedClear.addEventListener('click', clickAndClear);

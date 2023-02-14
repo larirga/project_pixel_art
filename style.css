@@ -1,6 +1,7 @@
 #title {
     color:black;
     font-family: monospace;
+    background-color: rgb(237, 180, 109);
 }
 
 .color {
@@ -26,9 +27,6 @@
     background-color: yellow;
 }
 
-/* body {
-    margin: 80px;
-    padding: 100px;
-    
-
-} */
+#overview {
+    background-color: #f8efed;
+}
