@@ -13,7 +13,7 @@
 
 ## 2 - Adicione à página uma paleta contendo quatro cores distintas.
 
-<details>
+
   <summary>A página deve conter uma paleta com quatro opções de cores</summary>
 
 - A paleta de cores deve ser um elemento com `id` denominado `color-palette`, e cada cor individual contida na paleta de cores deve possuir a `classe` chamada `color`;
@@ -26,33 +26,30 @@
 
 - A paleta de cores não deve conter cores repetidas.
 
-</details>
 
 ## 3 - Adicione a cor **preta** como a primeira cor da paleta de cores.
 
-<details>
+
   <summary>A primeira cor na paleta criada no requisito 2 deve ser preta. As demais cores podem ser escolhidas livremente. </summary><br />
 
-</details>
 
 ## 4 - Adicione um botão para gerar cores aleatórias para a paleta de cores.
 
-<details>
+
   <summary>A primeira cor da sua paleta deve ser a cor preta, e as outras três cores devem ser geradas aleatoriamente ao clicar no botão.</summary><br />
 
-</details>
+
 
 ## 5 - Implemente uma função usando localStorage para que a paleta de cores gerada aleatoriamente seja mantida após recarregar a página.
 
-<details>
+
 
   <summary>As cores da paleta de cores que foram geradas aleatoriamente devem ser mantidas após recarregar a página</summary><br />
 
-</details>
 
 ## 6 - Adicione à página um quadro contendo 25 pixels.
 
-<details>
+
   <summary>Sua página deve conter um quadro de pixels 5x5</summary>
 
 - O quadro de *pixels* deve ter 5 elementos de largura e 5 elementos de comprimento;
@@ -63,12 +60,12 @@
 
 - O quadro de *pixels* deve aparecer abaixo da paleta de cores.
 
-</details>
+
 
 
 ## 7 - Faça com que cada pixel do quadro tenha largura e altura de 40 pixels e borda preta de 1 pixel de espessura.
 
-<details>
+
   <summary>Cada <code>pixel</code> do quadro deve possuir 40px de largura e 40px de altura e uma borda preta sólida de 1px de espessura</summary><br />
 
 </details>
@@ -82,11 +79,11 @@
 
 - O elemento da cor preta deve possuir inicialmente a classe `selected`.
 
-</details>
+
 
 ## 9 - Crie uma função para selecionar uma cor na paleta de cores e preencha os pixels no quadro.
 
-<details>
+
   <summary>A cor clicada deve ser selecionada e poderá ser utilizada para preencher os quadros</summary>
 
 - A cor clicada deve receber a `classe` `selected` e a cor previamente selecionada deve perder esta `classe`;
@@ -95,18 +92,17 @@
 
 - Os elementos que deverão receber a `classe` `selected` devem ser os mesmos elementos que possuem a classe `color`, como especificado no **requisito 2**.
 
-</details>
 
 ## 10 - Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores.
 
-<details>
+
   <summary>O <code>pixel</code> do quadro clicado deve ter sua cor alterada para a cor selecionada na paleta de cores</summary><br />
 
-</details>
+
 
 ## 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
-<details>
+
   <summary>Sua página deve ter um botão que, ao ser clicado, deixe todos os <code>pixels</code> do quadro com a cor branca</summary><br />
 
-</details>
+
